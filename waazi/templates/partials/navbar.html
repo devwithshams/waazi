@@ -1,0 +1,36 @@
+<nav class="bg-gray-900 border-b border-gray-700 shadow-md fixed w-full top-0 z-50">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+    <a href="{% url 'home' %}" class="text-2xl font-bold text-white">Wa’azi</a>
+
+    <!-- Mobile Menu Button -->
+    <button id="menuToggle" class="lg:hidden text-white focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+
+    <!-- Navigation Links (Desktop) -->
+    <div class="hidden lg:flex space-x-6">
+      <a href="{% url 'home' %}" class="text-white hover:text-gray-300 text-lg font-medium transition duration-300">Home</a>
+      <a href="{% url 'scholars' %}" class="text-white hover:text-gray-300 text-lg font-medium transition duration-300">Scholars</a>
+      <a href="#" class="text-white hover:text-gray-300 text-lg font-medium transition duration-300">Categories</a>
+      <a href="#" class="text-white hover:text-gray-300 text-lg font-medium transition duration-300">About</a>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown (Hidden by Default) -->
+  <div id="mobileMenu" class="hidden lg:hidden flex flex-col items-center text-center bg-gray-900 border-t border-gray-700 shadow-md w-full absolute top-full left-0">
+    <a href="{% url 'home' %}" class="block py-3 w-full text-white hover:bg-gray-800">Home</a>
+    <a href="{% url 'scholars' %}" class="block py-3 w-full text-white hover:bg-gray-800">Scholars</a>
+    <a href="#" class="block py-3 w-full text-white hover:bg-gray-800">Categories</a>
+    <a href="#" class="block py-3 w-full text-white hover:bg-gray-800">About</a>
+  </div>
+</nav>
+
+<!-- JavaScript for Toggle -->
+<script>
+  document.getElementById('menuToggle').addEventListener('click', function() {
+    let menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('hidden');
+  });
+</script>

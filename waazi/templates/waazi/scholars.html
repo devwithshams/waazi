@@ -1,0 +1,21 @@
+{% extends "waazi/base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="title">Meet Our Scholars</h2>
+    
+    <div class="scholars-grid">
+        {% for scholar in scholars %}
+        <div class="scholar-card">
+            <a href="{% url 'scholar_profile' scholar.id %}">
+                <img src="{{ scholar.image.url }}" alt="{{ scholar.name }}" class="scholar-image">
+                <h3>{{ scholar.name }}</h3>
+            </a>
+            <p class="scholar-country">{{ scholar.country }}</p>
+        </div>
+        {% empty %}
+        <p>No scholars available.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

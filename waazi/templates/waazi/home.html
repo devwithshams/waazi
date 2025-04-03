@@ -1,0 +1,50 @@
+{% extends 'waazi/base.html' %}
+{% load static %}
+
+{% block title %}Scholars - Wa’azi{% endblock %}
+
+{% block content %}
+  <h1 class="text-3xl font-bold mb-8 text-center text-gray-900">Islamic Scholars</h1>
+  
+  <!-- Search Form -->
+  <form method="get" class="relative max-w-2xl mx-auto mb-8">
+    <div class="relative">
+      <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <input type="text" name="search" value="{{ search_query }}" placeholder="Search scholars..." 
+             class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-700 transition-all duration-300 shadow-sm">
+    </div>
+    <select name="category" 
+            class="w-full p-3 mt-4 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-700 transition-all duration-300 shadow-sm">
+      <option value="">All Categories</option>
+      {% for category in categories %}
+        <option value="{{ category.id }}" {% if selected_category == category.id|stringformat:"s" %}selected{% endif %}>
+          {{ category.name }}
+        </option>
+      {% endfor %}
+    </select>
+    <button type="submit" 
+            class="mt-4 w-full bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-all duration-300">
+      Search
+    </button>
+  </form>
+
+  <!-- Scholars Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
+    {% for scholar in scholars %}
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105">
+        <a href="{% url 'scholar_profile' scholar.id %}" class="block">
+          <img src="{{ scholar.image.url }}" 
+               class="w-full h-56 object-cover" alt="{{ scholar.name }}">
+          <div class="p-4 text-center">
+            <h5 class="text-lg font-semibold text-gray-900">{{ scholar.name }}</h5>
+            <p class="text-sm text-gray-600">Wa’azi: {{ scholar.waazi_set.count }}</p>
+          </div>
+        </a>
+      </div>
+    {% empty %}
+      <p class="text-gray-600 text-center col-span-full">No scholars found.</p>
+    {% endfor %}
+  </div>
+{% endblock %}
