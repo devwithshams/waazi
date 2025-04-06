@@ -41,8 +41,8 @@ INSTALLED_APPS = [
 
     'waazi',
     'rest_framework',
-    'tailwind',
-    'theme',
+    # 'tailwind',
+    # 'theme',
 ]
 
 MIDDLEWARE = [
